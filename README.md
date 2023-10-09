@@ -53,6 +53,7 @@ Para executar o front-end, siga estas etapas:
 1. Clique com o botão direito no arquivo "index.html" (localizado na pasta "front").
 
 2. No menu de contexto que aparece, você verá uma opção chamada "Open with Live Server", conforme mostrado na imagem abaixo:
+
     ![Live Server](readme/print2.png)
 
 Clicar nesta opção abrirá o front-end em um servidor ao vivo.
