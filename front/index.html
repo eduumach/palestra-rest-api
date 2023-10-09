@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>REST API Front-end</title>
+</head>
+<body>
+    <h1>Produtos</h1>
+    <ul id="product-list"></ul>
+    
+    <h2>Detalhes do Produto</h2>
+    <div id="product-details"></div>
+    
+    <h2>Criar Novo Produto</h2>
+    <form id="create-form">
+        <label for="create-name">Nome:</label>
+        <input type="text" id="create-name" required><br>
+        <label for="create-description">Descrição:</label>
+        <input type="text" id="create-description" required><br>
+        <label for="create-price">Preço:</label>
+        <input type="number" id="create-price" step="0.01" required><br>
+        <button type="submit">Criar Produto</button>
+    </form>
+    
+    <h2>Atualizar Produto</h2>
+    <form id="update-form">
+        <label for="update-id">ID do Produto:</label>
+        <input type="number" id="update-id" required><br>
+        <label for="update-name">Novo Nome:</label>
+        <input type="text" id="update-name" required><br>
+        <label for="update-description">Nova Descrição:</label>
+        <input type="text" id="update-description" required><br>
+        <label for="update-price">Novo Preço:</label>
+        <input type="number" id="update-price" step="0.01" required><br>
+        <button type="submit">Atualizar Produto</button>
+    </form>
+    
+    <h2>Excluir Produto</h2>
+    <form id="delete-form">
+        <label for="delete-id">ID do Produto:</label>
+        <input type="number" id="delete-id" required><br>
+        <button type="submit">Excluir Produto</button>
+    </form>
+
+    <script>
+        // Endereço do back
+        const url = 'http://localhost:5000';
+        
+        // Função para listar todos os produtos
+        function listarProdutos() {
+            fetch(url+'/produtos')
+                .then(response => response.json())
+                .then(data => {
+                    const productList = document.getElementById('product-list');
+                    productList.innerHTML = '';
+                    data.forEach(product => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `${product.nome} - <a href="#" onclick="mostrarDetalhes(${product.id})">Detalhes</a>`;
+                        productList.appendChild(listItem);
+                    });
+                });
+        }
+
+        // Função para mostrar detalhes de um produto por ID
+        function mostrarDetalhes(id) {
+            fetch(url+`/produtos/${id}`)
+                .then(response => response.json())
+                .then(product => {
+                    const productDetails = document.getElementById('product-details');
+                    productDetails.innerHTML = `ID: ${product.id}<br>Nome: ${product.nome}<br>Descrição: ${product.descricao}<br>Preço: ${product.preco}`;
+                });
+        }
+
+        // Função para criar um novo produto
+        document.getElementById('create-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const name = document.getElementById('create-name').value;
+            const description = document.getElementById('create-description').value;
+            const price = parseFloat(document.getElementById('create-price').value);
+
+            fetch(url+'/produtos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome: name, descricao: description, preco: price })
+            })
+                .then(() => {
+                    listarProdutos();
+                });
+        });
+
+        // Função para atualizar um produto existente
+        document.getElementById('update-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const id = parseInt(document.getElementById('update-id').value);
+            const name = document.getElementById('update-name').value;
+            const description = document.getElementById('update-description').value;
+            const price = parseFloat(document.getElementById('update-price').value);
+
+            fetch(url+`/produtos/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome: name, descricao: description, preco: price })
+            })
+                .then(() => {
+                    listarProdutos();
+                });
+        });
+
+        // Função para excluir um produto por ID
+        document.getElementById('delete-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const id = parseInt(document.getElementById('delete-id').value);
+
+            fetch(url+`/produtos/${id}`, {
+                method: 'DELETE'
+            })
+                .then(() => {
+                    listarProdutos();
+                });
+        });
+
+        // Listar produtos ao carregar a página
+        listarProdutos();
+    </script>
+</body>
+</html>

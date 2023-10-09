@@ -4,5 +4,10 @@
 
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash"
-  }
+  },
+  "remoteUser": "devuser",
+  "postCreateCommand": "bash .devcontainer/pos-instalacao.sh",
+  "extensions":[
+    "ritwickdey.LiveServer"
+  ]
 }

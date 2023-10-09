@@ -1,0 +1,11 @@
+# Virtual environment
+venv/
+
+# Python data
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.pyzw
