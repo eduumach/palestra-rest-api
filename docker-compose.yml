@@ -44,21 +44,21 @@ services:
 
   flask:
     container_name: flask
-    build: ./back/flask  # Path to your Flask application's Dockerfile
+    build: ./back/flask
     depends_on:
       - pgbouncer
   #    ports:
-  #      - "5000:5000"  # Map container port 80 to host port 5000  # Map your application code into the container
+  #      - "5000:5000"
 
 
 
   tornado:
     container_name: tornado
-    build: ./back/tornado  # Path to your Flask application's Dockerfile
+    build: ./back/tornado
     depends_on:
       - pgbouncer
   #    ports:
-  #      - "5000:5000"  # Map container port 80 to host port 5000  # Map your application code into the container
+  #      - "5000:5000"
 
   rust:
     container_name: rust
