@@ -83,7 +83,7 @@ fn handle_post_request(request: &str) -> (String, String) {
         (Ok(user), Ok(mut client)) => {
             client
                 .execute(
-                    "INSERT INTO produtos (name, descricao) VALUES ($1, $2,$3)",
+                    "INSERT INTO produtos (name, descricao, preco) VALUES ($1, $2,$3)",
                     &[&user.name, &user.descricao, &user.preco],
                 )
                 .unwrap();
