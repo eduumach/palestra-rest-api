@@ -64,6 +64,10 @@ services:
       - "9999:9999"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - go-app
+      - flask
+      - tornado
 
 
   jaeger:
