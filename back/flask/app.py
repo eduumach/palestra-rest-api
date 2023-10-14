@@ -18,19 +18,21 @@ db = DataBase()
 
 
 # Rota para listar todos os produtos (método GET)
-@app.route('/users', methods=['GET'])
+@app.route('/produtos', methods=['GET'])
 def listar_produtos():
     headers = {
         'Backend-Type': 'Flask'
     }
 
-    result = db.make_query("SELECT * FROM postgres", fetch_all=True)
+    result = db.make_query("SELECT * FROM produtos", fetch_all=True)
 
     print(result)
+    response = jsonify(result)
+    response.headers.set('Backend-Type', 'Flask')
+    return response, 200
+    # return Response(result, headers=headers)
 
-    return Response(headers=headers)
-    #
-    # return jsonify(produtos)
+
 
 
 # Rota para obter detalhes de um produto por ID (método GET)

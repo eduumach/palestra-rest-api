@@ -12,9 +12,10 @@ import (
 )
 
 type User struct {
-	ID    int    `json:"id"`
-	Name  string `json:"name"`
-	Email string `json:"email"`
+	ID        int    `json:"id"`
+	Name      string `json:"name"`
+	Descricao string `json:"descricao"`
+	Preco     string `json:"preco"`
 }
 
 func main() {
@@ -25,17 +26,19 @@ func main() {
 	}
 	defer db.Close()
 
+	//create the table if it doesn't exist
+
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	//create router
 	router := mux.NewRouter()
-	router.HandleFunc("/users", getUsers(db)).Methods("GET")
-	router.HandleFunc("/users/{id}", getUser(db)).Methods("GET")
-	router.HandleFunc("/users", createUser(db)).Methods("POST")
-	router.HandleFunc("/users/{id}", updateUser(db)).Methods("PUT")
-	router.HandleFunc("/users/{id}", deleteUser(db)).Methods("DELETE")
+	router.HandleFunc("/produtos", getUsers(db)).Methods("GET")
+	router.HandleFunc("/produtos/{id}", getUser(db)).Methods("GET")
+	router.HandleFunc("/produtos", createUser(db)).Methods("POST")
+	router.HandleFunc("/produtos/{id}", updateUser(db)).Methods("PUT")
+	router.HandleFunc("/produtos/{id}", deleteUser(db)).Methods("DELETE")
 
 	//start server
 	log.Fatal(http.ListenAndServe(":8050", jsonContentTypeMiddleware(router)))
@@ -52,7 +55,7 @@ func jsonContentTypeMiddleware(next http.Handler) http.Handler {
 // get all users
 func getUsers(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		rows, err := db.Query("SELECT * FROM users")
+		rows, err := db.Query("SELECT * FROM produtos")
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -61,7 +64,7 @@ func getUsers(db *sql.DB) http.HandlerFunc {
 		users := []User{}
 		for rows.Next() {
 			var u User
-			if err := rows.Scan(&u.ID, &u.Name, &u.Email); err != nil {
+			if err := rows.Scan(&u.ID, &u.Name, &u.Descricao, &u.Preco); err != nil {
 				log.Fatal(err)
 			}
 			users = append(users, u)
@@ -81,7 +84,7 @@ func getUser(db *sql.DB) http.HandlerFunc {
 		id := vars["id"]
 
 		var u User
-		err := db.QueryRow("SELECT * FROM users WHERE id = $1", id).Scan(&u.ID, &u.Name, &u.Email)
+		err := db.QueryRow("SELECT * FROM produtos WHERE id = $1", id).Scan(&u.ID, &u.Name, &u.Descricao, &u.Preco)
 		if err != nil {
 			w.WriteHeader(http.StatusNotFound)
 			return
@@ -97,7 +100,7 @@ func createUser(db *sql.DB) http.HandlerFunc {
 		var u User
 		json.NewDecoder(r.Body).Decode(&u)
 
-		err := db.QueryRow("INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id", u.Name, u.Email).Scan(&u.ID)
+		err := db.QueryRow("INSERT INTO produtos (name, descricao) VALUES ($1, $2) RETURNING id", u.Name, u.Descricao).Scan(&u.ID)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -115,7 +118,7 @@ func updateUser(db *sql.DB) http.HandlerFunc {
 		vars := mux.Vars(r)
 		id := vars["id"]
 
-		_, err := db.Exec("UPDATE users SET name = $1, email = $2 WHERE id = $3", u.Name, u.Email, id)
+		_, err := db.Exec("UPDATE produtos SET name = $1, descricao = $2 WHERE id = $3", u.Name, u.Descricao, id)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -131,12 +134,12 @@ func deleteUser(db *sql.DB) http.HandlerFunc {
 		id := vars["id"]
 
 		var u User
-		err := db.QueryRow("SELECT * FROM users WHERE id = $1", id).Scan(&u.ID, &u.Name, &u.Email)
+		err := db.QueryRow("SELECT * FROM produtos WHERE id = $1", id).Scan(&u.ID, &u.Name, &u.Descricao)
 		if err != nil {
 			w.WriteHeader(http.StatusNotFound)
 			return
 		} else {
-			_, err := db.Exec("DELETE FROM users WHERE id = $1", id)
+			_, err := db.Exec("DELETE FROM produtos WHERE id = $1", id)
 			if err != nil {
 				//todo : fix error handling
 				w.WriteHeader(http.StatusNotFound)

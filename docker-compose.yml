@@ -5,6 +5,7 @@ services:
     image: bitnami/postgresql:latest
     volumes:
       - pg_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
@@ -34,15 +35,24 @@ services:
     build: ./back/go
     environment:
       DATABASE_URL: "host=pgbouncer user=postgres password=postgres dbname=postgres port=6432 sslmode=disable"
-    ports:
-      - "8050:8050"
+    #    ports:
+    #      - "8050:8050"
     depends_on:
       - postgres
 
   flask:
     build: ./back/flask  # Path to your Flask application's Dockerfile
-    ports:
-      - "5000:5000"  # Map container port 80 to host port 5000  # Map your application code into the container
+  #    ports:
+  #      - "5000:5000"  # Map container port 80 to host port 5000  # Map your application code into the container
+
+
+
+  tornado:
+    build: ./back/tornado  # Path to your Flask application's Dockerfile
+  #    ports:
+  #      - "5000:5000"  # Map container port 80 to host port 5000  # Map your application code into the container
+
+
 
 
   nginx:
