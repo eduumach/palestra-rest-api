@@ -1,12 +1,19 @@
 import asyncio
+import json
 
 import tornado
+
+from database import DataBase
+
+db = DataBase()
 
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
+        result = db.make_query("SELECT * FROM produtos", fetch_all=True)
         self.set_header("Backend-Type", "Tornado")
-        self.write("Hello, world")
+        self.set_header("Content-Type", "text/json; charset=UTF-8")
+        self.write(json.dumps(result))
 
 
 def make_app():
