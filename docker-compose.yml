@@ -42,6 +42,8 @@ services:
 
   flask:
     build: ./back/flask  # Path to your Flask application's Dockerfile
+    depends_on:
+      - postgres
   #    ports:
   #      - "5000:5000"  # Map container port 80 to host port 5000  # Map your application code into the container
 
