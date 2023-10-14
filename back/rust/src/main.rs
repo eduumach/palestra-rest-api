@@ -13,7 +13,7 @@ struct Produto {
     id: Option<i32>,
     name: String,
     descricao: String,
-    preco: f32,
+    preco: f64,
 }
 
 //DATABASE_URL
