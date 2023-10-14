@@ -1,11 +1,17 @@
-FROM python:3.6.9-alpine
-WORKDIR /code
+# Use an official Python runtime as a parent image
+FROM python:3.9
 
-RUN apk --update --upgrade add --no-cache  gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
+# Set the working directory in the container
+WORKDIR /app
 
-RUN python -m pip install --upgrade pip
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+# Copy your Tornado application files to the container
+COPY . /app
+
+# Install any necessary dependencies (requirements.txt) for your Tornado application
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+# Expose the port on which your Tornado application will run
 EXPOSE 8888
-COPY . .
-CMD [ "python", "main.py" ]
+
+# Define the command to start your Tornado application
+CMD ["python", "main.py"]

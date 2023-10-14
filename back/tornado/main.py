@@ -5,6 +5,7 @@ import tornado
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
+        self.set_header("Backend-Type", "Tornado")
         self.write("Hello, world")
 
 
