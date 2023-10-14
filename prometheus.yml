@@ -1,28 +1,13 @@
 global:
-  scrape_interval: 15s
+  scrape_interval: 10s
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: "prometheus_master"
+    scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:9090']
-
-  - job_name: 'traefik'
-    static_configs:
-      - targets: ['traefik:8080']
+      - targets: ["localhost:9090"]
+  - job_name: 'nginx_status'
+    scrape_interval: 1m
     metrics_path: '/metrics'
-    params:
-      format: ['prometheus']
-
-  - job_name: 'service1'
     static_configs:
-      - targets: ['service1:80']  # Replace 'service1' with the actual container name or service name
-    metrics_path: '/metrics'
-    params:
-      format: ['prometheus']
-
-  - job_name: 'service2'
-    static_configs:
-      - targets: ['service2:80']  # Replace 'service2' with the actual container name or service name
-    metrics_path: '/metrics'
-    params:
-      format: ['prometheus']
+      - targets: ['10.10.10.50:9113']

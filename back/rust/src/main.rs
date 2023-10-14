@@ -33,8 +33,8 @@ fn main() {
 
 
     //start server and print port
-    let listener = TcpListener::bind(format!("0.0.0.0:8065")).unwrap();
-    println!("Server started at port 8065");
+    let listener = TcpListener::bind(format!("0.0.0.0:8060")).unwrap();
+    println!("Server started at port 8060");
 
     //handle the client
     for stream in listener.incoming() {
