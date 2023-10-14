@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 from flask import Response
 
+from database import DataBase
+
 # from flask_cors import CORS
 
 app = Flask(__name__)
@@ -12,15 +14,19 @@ produtos = [
     {"id": 2, "nome": "Produto 2", "descricao": "Descrição do Produto 2", "preco": 29.99},
 ]
 
+db = DataBase()
+
 
 # Rota para listar todos os produtos (método GET)
 @app.route('/users', methods=['GET'])
 def listar_produtos():
-
     headers = {
-        'Access-Control-Allow-Origin': '*',
         'Backend-Type': 'Flask'
     }
+
+    result = db.make_query("SELECT * FROM postgres", fetch_all=True)
+
+    print(result)
 
     return Response(headers=headers)
     #
@@ -68,4 +74,4 @@ def excluir_produto(id):
 
 
 if __name__ == '__main__':
-    app.run(debug = True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
