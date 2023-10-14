@@ -1,0 +1,85 @@
+version: '3'
+services:
+
+  postgres:
+    container_name: postgres
+    image: bitnami/postgresql:latest
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+
+
+  pgbouncer:
+    container_name: pgbouncer
+    image: bitnami/pgbouncer:latest
+    environment:
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=postgres
+      - POSTGRESQL_HOST=postgres
+      - POSTGRESQL_DATABASE=postgres
+      - MAX_CLIENT_CONN=5
+      - PGBOUNCER_POOL_MODE=transaction
+      - PGBOUNCER_PORT=6432
+      - ADMIN_USERS=postgres
+      - PGBOUNCER_IGNORE_STARTUP_PARAMETERS=extra_float_digits
+    ports:
+      - "6432:6432"
+    depends_on:
+      - postgres
+
+  golang:
+    container_name: golang
+    image: francescoxx/go-app:1.0.0
+    build: ./back/go
+    environment:
+      DATABASE_URL: "host=pgbouncer user=postgres password=postgres dbname=postgres port=6432 sslmode=disable"
+    #    ports:
+    #      - "8050:8050"
+    depends_on:
+      - pgbouncer
+
+  flask:
+    container_name: flask
+    build: ./back/flask
+    depends_on:
+      - pgbouncer
+  #    ports:
+  #      - "5000:5000"
+
+
+
+  tornado:
+    container_name: tornado
+    build: ./back/tornado
+    depends_on:
+      - pgbouncer
+  #    ports:
+  #      - "5000:5000"
+
+  rust:
+    container_name: rust
+    build: ./back/rust
+    depends_on:
+      - pgbouncer
+
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "9999:9999"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - golang
+      - flask
+      - tornado
+      - rust
+
+
+volumes:
+  pg_data:
