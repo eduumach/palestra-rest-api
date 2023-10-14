@@ -1,0 +1,11 @@
+/home/andre/Desktop/eduardo/palestra-rest-api/back/rust/target/debug/deps/generic_array-6445d344a03fd3bb.rmeta: /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/lib.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/hex.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/impls.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/arr.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/functional.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/iter.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/sequence.rs
+
+/home/andre/Desktop/eduardo/palestra-rest-api/back/rust/target/debug/deps/generic_array-6445d344a03fd3bb.d: /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/lib.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/hex.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/impls.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/arr.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/functional.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/iter.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/sequence.rs
+
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/lib.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/hex.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/impls.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/arr.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/functional.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/iter.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.7/src/sequence.rs:

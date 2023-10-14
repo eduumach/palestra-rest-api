@@ -1,0 +1,12 @@
+/home/andre/Desktop/eduardo/palestra-rest-api/back/produtos-rust/target/debug/deps/libasync_trait-4899ea9a82935955.so: /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/lib.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/args.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/bound.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/expand.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/lifetime.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/parse.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/receiver.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/verbatim.rs
+
+/home/andre/Desktop/eduardo/palestra-rest-api/back/produtos-rust/target/debug/deps/async_trait-4899ea9a82935955.d: /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/lib.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/args.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/bound.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/expand.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/lifetime.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/parse.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/receiver.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/verbatim.rs
+
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/lib.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/args.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/bound.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/expand.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/lifetime.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/parse.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/receiver.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/async-trait-0.1.73/src/verbatim.rs:

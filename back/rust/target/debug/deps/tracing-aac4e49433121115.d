@@ -1,0 +1,13 @@
+/home/andre/Desktop/eduardo/palestra-rest-api/back/rust/target/debug/deps/tracing-aac4e49433121115.rmeta: /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/lib.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/macros.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/dispatcher.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/field.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/instrument.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/level_filters.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/span.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/stdlib.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/subscriber.rs
+
+/home/andre/Desktop/eduardo/palestra-rest-api/back/rust/target/debug/deps/tracing-aac4e49433121115.d: /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/lib.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/macros.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/dispatcher.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/field.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/instrument.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/level_filters.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/span.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/stdlib.rs /home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/subscriber.rs
+
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/lib.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/macros.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/dispatcher.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/field.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/instrument.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/level_filters.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/span.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/stdlib.rs:
+/home/andre/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.39/src/subscriber.rs:

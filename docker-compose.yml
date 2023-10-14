@@ -56,7 +56,10 @@ services:
   #    ports:
   #      - "5000:5000"  # Map container port 80 to host port 5000  # Map your application code into the container
 
-
+  rust:
+    build: ./back/rust
+    depends_on:
+      - pgbouncer
 
 
   nginx:
