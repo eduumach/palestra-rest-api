@@ -38,12 +38,12 @@ services:
     #    ports:
     #      - "8050:8050"
     depends_on:
-      - postgres
+      - pgbouncer
 
   flask:
     build: ./back/flask  # Path to your Flask application's Dockerfile
     depends_on:
-      - postgres
+      - pgbouncer
   #    ports:
   #      - "5000:5000"  # Map container port 80 to host port 5000  # Map your application code into the container
 
@@ -51,6 +51,8 @@ services:
 
   tornado:
     build: ./back/tornado  # Path to your Flask application's Dockerfile
+    depends_on:
+      - pgbouncer
   #    ports:
   #      - "5000:5000"  # Map container port 80 to host port 5000  # Map your application code into the container
 
