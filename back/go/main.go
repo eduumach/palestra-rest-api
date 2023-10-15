@@ -108,7 +108,8 @@ func getProduct(db *sql.DB) http.HandlerFunc {
 // create product
 func createProduct(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var u ProductCreateAndUpdate
+		var u Product
+		var u1 ProductCreateAndUpdate
 	
 		json.NewDecoder(r.Body).Decode(&u)
 
@@ -117,7 +118,7 @@ func createProduct(db *sql.DB) http.HandlerFunc {
 			log.Fatal(err)
 		}
 
-		json.NewEncoder(w).Encode(u)
+		json.NewEncoder(w).Encode(u1)
 	}
 }
 
