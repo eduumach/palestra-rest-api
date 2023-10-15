@@ -15,13 +15,13 @@ class MainHandler(tornado.web.RequestHandler):
         self.set_status(status_code)
         self.write(json.dumps(data))
     
-    def get(self):
-        result = db.make_query("SELECT * FROM produtos", fetch_all=True)
-        self._create_response(result)
-    
-    def get(self, produto_id):
-        result = db.make_query(f"SELECT * FROM produtos WHERE id={produto_id}", fetch_all=False)
-        self._create_response(result)
+    def get(self, produto_id=None):
+        if produto_id is None:
+            result = db.make_query("SELECT * FROM produtos", fetch_all=True)
+            self._create_response(result)
+        else:
+            result = db.make_query(f"SELECT * FROM produtos WHERE id={produto_id}", fetch_all=True)
+            self._create_response(result[0])
 
     def post(self):
         data = json.loads(self.request.body)
