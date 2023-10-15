@@ -1,5 +1,11 @@
 # Bem-vindo à Apresentação 👋
 
+## Slides 📽️
+
+Para acessar os slides da apresentação, basta clicar no link abaixo:
+
+[Slides da Apresentação](https://docs.google.com/presentation/d/1KYGC6aMGhZIhwo7T2JESwOybJt0VOIMp8o-0cvPj1CQ/edit?usp=sharing)
+
 ## Configurando o Projeto 🛠️
 
 Antes de começarmos, vamos configurar o projeto. Certifique-se de ter o Docker e o Docker Compose instalados em seu sistema.
