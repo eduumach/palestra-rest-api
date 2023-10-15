@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask import Response
 import json
+import logging
 
 from database import DataBase
 
@@ -31,9 +32,8 @@ def listar_produtos():
 @app.route('/produtos/<int:id>', methods=['GET'])
 def obter_produto(id):
     result = db.make_query(
-        f"SELECT * FROM produtos WHERE id={id}", fetch_all=False)
-
-    return create_response(result)
+        f"SELECT * FROM produtos WHERE id={id}", fetch_all=True)
+    return create_response(result[0])
 
 
 # Rota para criar um novo produto (método POST)

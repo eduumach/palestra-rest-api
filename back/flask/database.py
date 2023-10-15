@@ -20,7 +20,7 @@ class DataBase(object):
             self.conn = psycopg2.connect(dbname='postgres',
                                          user='postgres',
                                          password='postgres',
-                                         host='pgbouncer',
+                                         host='localhost',
                                          port='6432'
 
                                          )
