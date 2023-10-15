@@ -1,61 +1,79 @@
-# Bem-vindo à Apresentação
+# Bem-vindo à Apresentação 👋
 
-## Configurando o Projeto
+## Slides 📽️
 
-Antes de começarmos, vamos configurar o projeto. Certifique-se de ter a extensão "Remote Development" instalada no VSCode e o Docker em execução.
+Para acessar os slides da apresentação, basta clicar no link abaixo:
 
-### Opção 1: Usando o Template
+[Slides da Apresentação](https://docs.google.com/presentation/d/1KYGC6aMGhZIhwo7T2JESwOybJt0VOIMp8o-0cvPj1CQ/edit?usp=sharing)
 
-1. Faça um fork deste projeto ou simplesmente clone-o.
-2. Abra o repositório no VSCode.
-3. Ao abrir o projeto, você verá a seguinte notificação:
-   ![Notificação do Devcontainer](readme/print.png)
-4. Clique no botão "Reopen in Container" para carregar o ambiente de desenvolvimento.
+## Configurando o Projeto 🛠️
 
-Isso é tudo! Agora você está pronto para começar a desenvolver.
+Antes de começarmos, vamos configurar o projeto. Certifique-se de ter o Docker e o Docker Compose instalados em seu sistema.
 
-### Opção 2: Usando o Botão de Simplificação
+### Utilizando o Docker Compose 🐳
 
-Outra opção é abrir este repositório no VSCode instantaneamente. Basta clicar no seguinte botão:
+Siga os passos abaixo para configurar o projeto rapidamente:
 
-[![Abrir em Remote - Containers](https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Abrir&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/eduumach/palestra-rest-api)
+1. Realize um fork deste projeto em seu repositório ou simplesmente clone-o para sua máquina.
 
-Isso irá clonar o repositório e abri-lo em um Devcontainer imediatamente.
+2. Abra o terminal.
 
-**Dica:** Para vincular este repositório ao seu próprio repositório, adicione um controle remoto Git diferente usando o comando `git remote add`.
+3. Navegue até o diretório raiz do projeto.
 
-Espero que isso torne a configuração mais clara e fácil de seguir. Boa sorte com o desenvolvimento! 🚀
+4. Execute o comando `docker-compose up -d`.
 
-Claro, aqui estão as instruções aprimoradas para rodar o back e o front do seu projeto:
+Agora, você está pronto para começar a desenvolver! 🚀
 
----
+## Rodando os Testes com Newman 🧪
 
-## Rodando o Back-End
+Para rodar os testes, você pode utilizar o Newman. Para isso, siga os passos abaixo:
 
-Executar o projeto back-end é simples. Siga estas etapas:
+1. Abra o terminal.
+1. Navegue até o diretório raiz do projeto.
+1. Instale o newman com o comando `npm install -g newman`.
+1. Rode os testes com o comando `newman run postman/collection.json -e postman/environment.json`.
 
-1. Navegue até a pasta "back" usando o seguinte comando no terminal:
-    ```
-    cd back
-    ```
+## Documentação da API 📖
 
-2. Agora, execute o comando a seguir para iniciar o servidor Flask:
-    ```
-    python3 -m flask run
-    ```
+Para acessar a documentação da API, basta acessar o link abaixo:
 
-Seu ambiente de back-end estará agora em execução.
+[Documentação da API](https://documenter.getpostman.com/view/25111807/2s9YR6ZZH4)
 
-## Rodando o Front-End
+## Tecnologias Utilizadas 🧰
 
-Para executar o front-end, siga estas etapas:
+### Linguagens de Programação
 
-1. Clique com o botão direito no arquivo "index.html" (localizado na pasta "front").
+- [Python](https://www.python.org/)
+- [Go](https://golang.org/)
+- [Rust](https://www.rust-lang.org/)
+- [HTML](https://html.spec.whatwg.org/)
+- [CSS](https://www.w3.org/Style/CSS/Overview.en.html)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [SQL](https://www.iso.org/standard/63555.html)
 
-2. No menu de contexto que aparece, você verá uma opção chamada "Open with Live Server", conforme mostrado na imagem abaixo:
+### Frameworks
 
-    ![Live Server](readme/print2.png)
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+- [Tornado](https://www.tornadoweb.org/en/stable/)
 
-Clicar nesta opção abrirá o front-end em um servidor ao vivo.
+### Load Balancer
 
-Agora, você pode acessar seu aplicativo front-end e testá-lo. Espero que isso torne a execução do projeto mais clara e fácil. Boa programação! 🚀
+- [Nginx](https://www.nginx.com/)
+
+### Banco de Dados
+- [PostgreSQL](https://www.postgresql.org/)
+- [PqBouncer](https://www.pgbouncer.org/)
+
+### Ferramentas de Desenvolvimento
+
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [Postman](https://www.postman.com/)
+- [Newman](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/)
+- [Git](https://git-scm.com/)
+- [GitHub](https://github.com)
+- [VSCode](https://code.visualstudio.com/)
+- [PyCharm](https://www.jetbrains.com/pt-br/pycharm/)
+- [Rust Rover](https://www.jetbrains.com/rust/)
+- [Gitignore.io](https://www.toptal.com/developers/gitignore)
+
