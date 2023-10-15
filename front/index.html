@@ -4,7 +4,8 @@
     <title>REST API Front-end</title>
 </head>
 <body>
-    <h1>Produtos</h1>
+    <h1>Produtos </h1>
+    <div id="header"></div>
     <ul id="product-list"></ul>
     
     <h2>Detalhes do Produto</h2>
@@ -43,12 +44,17 @@
 
     <script>
         // Endereço do back
-        const url = 'http://localhost:5000';
+        const url = 'http://localhost:9999';
         
         // Função para listar todos os produtos
         function listarProdutos() {
             fetch(url+'/produtos')
-                .then(response => response.json())
+                .then(response => {
+                    const header = document.getElementById('header');
+                    header.innerHTML = `Backend: ${response.headers.get('Backend-Type')}`;
+                    console.log(response.headers.get('Backend-Type'));    
+                    return response.json()
+                })
                 .then(data => {
                     const productList = document.getElementById('product-list');
                     productList.innerHTML = '';

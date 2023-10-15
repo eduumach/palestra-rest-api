@@ -13,9 +13,10 @@ import (
 
 type User struct {
 	ID        int    `json:"id"`
-	Name      string `json:"name"`
+	Nome      string `json:"nome"`
 	Descricao string `json:"descricao"`
 	Preco     string `json:"preco"`
+	Vendido   bool   `json:"vendido"`
 }
 
 func main() {
@@ -38,6 +39,7 @@ func main() {
 	router.HandleFunc("/produtos/{id}", getUser(db)).Methods("GET")
 	router.HandleFunc("/produtos", createUser(db)).Methods("POST")
 	router.HandleFunc("/produtos/{id}", updateUser(db)).Methods("PUT")
+	router.HandleFunc("/produtos/{id}", partialUpdateUser(db)).Methods("PATCH")
 	router.HandleFunc("/produtos/{id}", deleteUser(db)).Methods("DELETE")
 
 	//start server
@@ -64,7 +66,7 @@ func getUsers(db *sql.DB) http.HandlerFunc {
 		users := []User{}
 		for rows.Next() {
 			var u User
-			if err := rows.Scan(&u.ID, &u.Name, &u.Descricao, &u.Preco); err != nil {
+			if err := rows.Scan(&u.ID, &u.Nome, &u.Descricao, &u.Preco, &u.Vendido); err != nil {
 				log.Fatal(err)
 			}
 			users = append(users, u)
@@ -80,14 +82,12 @@ func getUsers(db *sql.DB) http.HandlerFunc {
 // get user by id
 func getUser(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		vars := mux.Vars(r)
-		id := vars["id"]
+		params := mux.Vars(r)
 
 		var u User
-		err := db.QueryRow("SELECT * FROM produtos WHERE id = $1", id).Scan(&u.ID, &u.Name, &u.Descricao, &u.Preco)
-		if err != nil {
-			w.WriteHeader(http.StatusNotFound)
-			return
+		row := db.QueryRow("SELECT * FROM produtos WHERE id = $1", params["id"])
+		if err := row.Scan(&u.ID, &u.Nome, &u.Descricao, &u.Preco, &u.Vendido); err != nil {
+			log.Fatal(err)
 		}
 
 		json.NewEncoder(w).Encode(u)
@@ -100,7 +100,7 @@ func createUser(db *sql.DB) http.HandlerFunc {
 		var u User
 		json.NewDecoder(r.Body).Decode(&u)
 
-		err := db.QueryRow("INSERT INTO produtos (name, descricao) VALUES ($1, $2) RETURNING id", u.Name, u.Descricao).Scan(&u.ID)
+		_, err := db.Exec("INSERT INTO produtos (nome, descricao, preco) VALUES ($1, $2, $3)", u.Nome, u.Descricao, u.Preco)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -112,13 +112,29 @@ func createUser(db *sql.DB) http.HandlerFunc {
 // update user
 func updateUser(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		params := mux.Vars(r)
+
 		var u User
 		json.NewDecoder(r.Body).Decode(&u)
 
-		vars := mux.Vars(r)
-		id := vars["id"]
+		_, err := db.Exec("UPDATE produtos SET nome = $1, descricao = $2, preco = $3 WHERE id = $4", u.Nome, u.Descricao, u.Preco, params["id"])
+		if err != nil {
+			log.Fatal(err)
+		}
 
-		_, err := db.Exec("UPDATE produtos SET name = $1, descricao = $2 WHERE id = $3", u.Name, u.Descricao, id)
+		json.NewEncoder(w).Encode(u)
+	}
+}
+
+// partial update user
+func partialUpdateUser(db *sql.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		params := mux.Vars(r)
+
+		var u User
+		json.NewDecoder(r.Body).Decode(&u)
+
+		_, err := db.Exec("UPDATE produtos SET vendido = $1 WHERE id = $2", u.Vendido, params["id"])
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -130,23 +146,13 @@ func updateUser(db *sql.DB) http.HandlerFunc {
 // delete user
 func deleteUser(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		vars := mux.Vars(r)
-		id := vars["id"]
+		params := mux.Vars(r)
 
-		var u User
-		err := db.QueryRow("SELECT * FROM produtos WHERE id = $1", id).Scan(&u.ID, &u.Name, &u.Descricao)
+		_, err := db.Exec("DELETE FROM produtos WHERE id = $1", params["id"])
 		if err != nil {
-			w.WriteHeader(http.StatusNotFound)
-			return
-		} else {
-			_, err := db.Exec("DELETE FROM produtos WHERE id = $1", id)
-			if err != nil {
-				//todo : fix error handling
-				w.WriteHeader(http.StatusNotFound)
-				return
-			}
-
-			json.NewEncoder(w).Encode("User deleted")
+			log.Fatal(err)
 		}
+
+		w.WriteHeader(http.StatusNoContent)
 	}
 }

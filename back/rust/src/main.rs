@@ -2,6 +2,7 @@ use postgres::{Client, NoTls};
 use postgres::Error as PostgresError;
 use std::net::{TcpListener, TcpStream};
 use std::io::{Read, Write};
+use std::collections::HashMap;
 
 
 #[macro_use]
@@ -10,9 +11,10 @@ extern crate serde_derive;
 #[derive(Serialize, Deserialize)]
 struct Produto {
     id: Option<i32>,
-    name: String,
+    nome: String,
     descricao: String,
     preco: f64,
+    vendido: bool,
 }
 
 //DATABASE_URL
@@ -54,7 +56,6 @@ fn handle_client(mut stream: TcpStream) {
     let mut buffer = [0; 1024];
     let mut request = String::new();
 
-
     match stream.read(&mut buffer) {
         Ok(size) => {
             request.push_str(String::from_utf8_lossy(&buffer[..size]).as_ref());
@@ -64,12 +65,16 @@ fn handle_client(mut stream: TcpStream) {
                 r if r.starts_with("GET /produtos/") => handle_get_request(r),
                 r if r.starts_with("GET /produtos") => handle_get_all_request(r),
                 r if r.starts_with("PUT /produtos/") => handle_put_request(r),
+                r if r.starts_with("PATCH /produtos/") => handle_patch_request(r),
                 r if r.starts_with("DELETE /produtos/") => handle_delete_request(r),
                 _ => (NOT_FOUND.to_string(), "404 Not Found".to_string()),
             };
 
+            // Add the header to the response
+            content = format!("{}Backend-Type: Rust\r\n\r\n{}", content, "");
 
             stream.write_all(format!("{}{}", status_line, content).as_bytes()).unwrap();
+
         }
         Err(e) => {
             println!("Error: {}", e);
@@ -85,8 +90,10 @@ fn handle_post_request(request: &str) -> (String, String) {
         (Ok(user), Ok(mut client)) => {
             client
                 .execute(
-                    "INSERT INTO produtos (name, descricao, preco) VALUES ($1, $2,$3)",
-                    &[&user.name, &user.descricao, &user.preco],
+                    "INSERT INTO produtos (nome
+                , descricao, preco) VALUES ($1, $2,$3)",
+                    &[&user.nome
+            , &user.descricao, &user.preco],
                 )
                 .unwrap();
 
@@ -104,9 +111,11 @@ fn handle_get_request(request: &str) -> (String, String) {
                 Ok(row) => {
                     let user = Produto {
                         id: row.get(0),
-                        name: row.get(1),
+                        nome
+                : row.get(1),
                         descricao: row.get(2),
                         preco: row.get(3),
+                        vendido: row.get(4),
                     };
 
                     (OK_RESPONSE.to_string(), serde_json::to_string(&user).unwrap())
@@ -127,10 +136,11 @@ fn handle_get_all_request(_request: &str) -> (String, String) {
             for row in client.query("SELECT * FROM produtos", &[]).unwrap() {
                 users.push(Produto {
                     id: row.get(0),
-                    name: row.get(1),
+                    nome
+            : row.get(1),
                     descricao: row.get(2),
                     preco: row.get(3),
-
+                    vendido: row.get(4),
                 });
             }
 
@@ -152,8 +162,33 @@ fn handle_put_request(request: &str) -> (String, String) {
         (Ok(id), Ok(user), Ok(mut client)) => {
             client
                 .execute(
-                    "UPDATE produtos SET name = $1, descricao = $2 WHERE id = $3",
-                    &[&user.name, &user.descricao, &id],
+                    "UPDATE produtos SET nome
+             = $1, descricao = $2, preco = $3 WHERE id = $4",
+                    &[&user.nome
+            , &user.descricao, &user.preco, &id],
+                )
+                .unwrap();
+
+            (OK_RESPONSE.to_string(), "User updated".to_string())
+        }
+        _ => (INTERNAL_SERVER_ERROR.to_string(), "Error".to_string()),
+    }
+}
+
+//handle_patch_request function
+fn handle_patch_request(request: &str) -> (String, String) {
+    match
+    (
+        get_id(&request).parse::<i32>(),
+        get_user_request_body(&request),
+        Client::connect(DB_URL, NoTls),
+    )
+    {
+        (Ok(id), Ok(user), Ok(mut client)) => {
+            client
+                .execute(
+                    "UPDATE produtos SET vendido = $1 WHERE id = $2",
+                    &[&user.vendido, &id],
                 )
                 .unwrap();
 
@@ -188,7 +223,8 @@ fn set_database() -> Result<(), PostgresError> {
     client.batch_execute(
         "CREATE TABLE IF NOT EXISTS users (
             id SERIAL PRIMARY KEY,
-            name VARCHAR NOT NULL,
+            nome
+     VARCHAR NOT NULL,
             email VARCHAR NOT NULL
         )"
     )?;
