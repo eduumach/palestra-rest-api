@@ -1,6 +1,5 @@
-version: '3'
+version: "3"
 services:
-
   postgres:
     container_name: postgres
     image: bitnami/postgresql:latest
@@ -11,7 +10,6 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=postgres
-
 
   pgbouncer:
     container_name: pgbouncer
@@ -50,8 +48,6 @@ services:
   #    ports:
   #      - "5000:5000"
 
-
-
   tornado:
     container_name: tornado
     build: ./back/tornado
@@ -66,7 +62,6 @@ services:
     depends_on:
       - pgbouncer
 
-
   nginx:
     container_name: nginx
     image: nginx:latest
@@ -79,7 +74,6 @@ services:
       - flask
       - tornado
       - rust
-
 
 volumes:
   pg_data:
