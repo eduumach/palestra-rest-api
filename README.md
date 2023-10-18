@@ -36,6 +36,19 @@ Para acessar a documentação da API, basta acessar o link abaixo:
 
 [Documentação da API](https://documenter.getpostman.com/view/25111807/2s9YR6ZZH4)
 
+## Repositorios de API's Públicas 📚
+
+Algumas API's públicas para você utilizar em seus projetos:
+
+- [Public APIs](https://github.com/public-apis/public-apis) - Aqui você encontra uma lista de API's públicas para utilizar em seus projetos, em inglês.
+
+- [Public APIs List](https://github.com/public-api-lists/public-api-lists) - Mesma coisa que o repositório anterior, so que com umas API's diferentes, em inglês.
+
+- [Brasil API](https://github.com/BrasilAPI/BrasilAPI) - Aqui você encontra uma lista de API's públicas brasileiras para utilizar em seus projetos.
+- [PokéAPI](https://pokeapi.co/) - API de Pokémon, em inglês.
+- [Advice Slip](https://api.adviceslip.com/) - API de conselhos, em inglês.
+- [Fun Translations](https://funtranslations.com/api) - API de tradução de textos para linguagens fictícias, em inglês.
+
 ## Tecnologias Utilizadas 🧰
 
 ### Linguagens de Programação
