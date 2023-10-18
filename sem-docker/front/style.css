@@ -1,0 +1,79 @@
+/* Reset de estilos padrão */
+html, body, h1, h2, ul, li, form {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+h1, h2 {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+#header {
+    height: 20px;
+}
+
+#product-list {
+    list-style: none;
+}
+
+#product-list li {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    margin: 10px;
+    padding: 10px;
+}
+
+#product-details {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+form {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #555;
+}

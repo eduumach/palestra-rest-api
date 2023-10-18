@@ -21,6 +21,17 @@ Siga os passos abaixo para configurar o projeto rapidamente:
 
 Agora, você está pronto para começar a desenvolver! 🚀
 
+### Sem o Docker Compose 🐳
+
+Siga os passos abaixo para configurar o projeto sem o Docker Compose:
+
+1. Entre na pasta `cd sem-docker` do projeto.
+2. Instale a venv com o comando `python3 -m venv venv`.
+3. Ative a venv com o comando `source venv/bin/activate` ou pelo windows `venv\Scripts\activate.bat`.
+4. Instale as dependências com o comando `pip install -r requirements.txt`.
+5. Execute o comando `flask run` para iniciar o servidor.
+
+
 ## Rodando os Testes com Newman 🧪
 
 Para rodar os testes, você pode utilizar o Newman. Para isso, siga os passos abaixo:
